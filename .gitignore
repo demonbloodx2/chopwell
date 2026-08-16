@@ -32,9 +32,11 @@ yarn-error.*
 
 # local env files
 .env*.local
-.env.development
 .env.production
 .env
+
+# Note: .env.development is NOT ignored because it contains only local Supabase
+# credentials which are safe to commit and helps team members get started quickly
 
 # typescript
 *.tsbuildinfo

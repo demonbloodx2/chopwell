@@ -55,11 +55,14 @@ chopwell/
 
 - Node.js 20+ or 22+
 - npm or yarn
-- Expo CLI (`npm install -g expo-cli`)
+- **Docker Desktop** ([Download](https://www.docker.com/products/docker-desktop/))
+  - Required for local Supabase
+  - Make sure Docker is running before starting Supabase
+- Expo CLI (optional: `npm install -g expo-cli`)
 - iOS Simulator (for macOS) or Android Emulator
-- Supabase account (for backend services)
+- Supabase CLI (installed automatically via Homebrew on macOS)
 
-### Installation
+### Quick Start
 
 1. **Clone the repository**
 
@@ -74,29 +77,26 @@ chopwell/
    npm install
    ```
 
-3. **Configure environment variables**
+3. **Start local Supabase**
 
-   Copy the example environment file and fill in your Supabase credentials:
+   **Important**: Make sure Docker Desktop is running first!
 
    ```bash
-   cp .env.example .env.development
+   npm run supabase:start
    ```
 
-   Edit `.env.development` and add your Supabase project details:
+   This starts a complete local Supabase instance (Postgres, Auth, Storage, Studio).
+   The first time may take a few minutes to download Docker images.
 
-   ```env
-   SUPABASE_URL=https://your-project.supabase.co
-   SUPABASE_ANON_KEY=your-anon-key-here
-   ENVIRONMENT=development
+   `.env.development` is already configured with local Supabase credentials.
+
+4. **Verify Supabase is running**
+
+   ```bash
+   npm run supabase:status
    ```
 
-   **Important**: Never commit the service role key to the repository. Only use the anon (public) key in the client.
-
-4. **Set up Supabase**
-
-   - Create a Supabase project at https://supabase.com
-   - Note your project URL and anon key from the project settings
-   - Set up the database schema (migrations coming in future tickets)
+   Visit **Supabase Studio** at http://localhost:54323 to view your local database.
 
 ### Running the App
 
@@ -135,6 +135,30 @@ npm run format
 npm run format:check
 ```
 
+### Local Supabase
+
+```bash
+# Start local Supabase (requires Docker)
+npm run supabase:start
+
+# Stop local Supabase
+npm run supabase:stop
+
+# Check status
+npm run supabase:status
+
+# Reset database (WARNING: deletes all data)
+npm run supabase:reset
+
+# Create a new migration
+npm run db:migrate <name>
+
+# Push migrations to local DB
+npm run db:push
+```
+
+Access **Supabase Studio** (database admin UI) at http://localhost:54323 when running.
+
 ### Testing
 
 ```bash
@@ -144,12 +168,18 @@ npm test
 
 ## Environment Configuration
 
-The project supports two environments:
+The project uses **local Supabase** for development and a **cloud Supabase project** for production:
 
-- **Development** (`.env.development`): For local development and testing
-- **Production** (`.env.production`): For production deployment
+- **Development** (`.env.development`): Local Supabase (safe to commit)
+  - Already configured with standard local credentials
+  - Run `npm run supabase:start` to use
 
-Never commit `.env.development` or `.env.production` files. Only `.env.example` should be committed as a template.
+- **Production** (`.env.production`): Cloud Supabase (never commit)
+  - Create a cloud project at https://supabase.com
+  - Fill in your production credentials
+  - Keep this file gitignored
+
+This approach saves money and gives you complete isolation between dev and prod.
 
 ## CI/CD
 
