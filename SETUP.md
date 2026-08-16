@@ -1,3 +1,5 @@
+n
+
 # Chopwell Development Setup Guide
 
 This guide will help you get Chopwell running on your local machine.
@@ -36,6 +38,7 @@ npm run supabase:start
 ```
 
 This will:
+
 - Start a local Postgres database
 - Start Supabase Auth service
 - Start Supabase Storage
@@ -51,6 +54,7 @@ npm run supabase:status
 ```
 
 You should see output showing all services running. You can also visit:
+
 - **Supabase Studio**: http://localhost:54323 (Database admin UI)
 - **API**: http://localhost:54321
 
@@ -61,6 +65,7 @@ npm start
 ```
 
 Then choose how to run the app:
+
 - Press `i` for iOS Simulator (macOS only)
 - Press `a` for Android Emulator
 - Press `w` to run in web browser
@@ -233,6 +238,7 @@ When Supabase is running locally, you can access Supabase Studio (database admin
 **http://localhost:54323**
 
 Here you can:
+
 - Browse your database tables
 - Run SQL queries
 - View logs
