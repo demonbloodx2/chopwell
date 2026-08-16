@@ -7,6 +7,7 @@ Get up and running in 3 steps:
 **macOS**: Open Docker Desktop from Applications
 
 **Check if running**:
+
 ```bash
 docker ps
 ```
@@ -22,6 +23,7 @@ npm run supabase:start
 ⏱️ **First time?** This will download Docker images (~2-5 minutes)
 
 ✅ **When ready**, you'll see:
+
 ```
 Started supabase local development setup.
 
@@ -43,6 +45,7 @@ npm start
 ```
 
 Then:
+
 - Press `i` for iOS Simulator (macOS only)
 - Press `a` for Android Emulator
 - Press `w` for web browser
